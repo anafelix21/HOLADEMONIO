@@ -1,0 +1,31 @@
+/* --- Estilos personalizados para Carne de Pollo --- */
+
+body {
+    background-color: #f9fafb;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Encabezado */
+section.bg-yellow-600 {
+    background: linear-gradient(135deg, #fbbf24, #d97706);
+}
+
+/* Tarjetas */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón "Agregar" */
+button {
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #eab308;
+    transform: translateY(-2px);
+}

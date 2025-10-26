@@ -1,0 +1,42 @@
+/* === Estilos específicos para la página de Carne de Cerdo === */
+
+body {
+    background-color: #f8f8f8;
+}
+
+/* Encabezado */
+section.bg-pink-700 {
+    background: linear-gradient(90deg, #b91c1c, #f472b6);
+}
+
+/* Tarjetas de producto */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid #f9a8d4;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(255, 182, 193, 0.4);
+}
+
+/* Imagen del producto */
+.product-card img {
+    filter: brightness(0.95);
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+/* Botón de agregar */
+.product-card button {
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.product-card button:hover {
+    background-color: #be185d;
+    transform: scale(1.05);
+}

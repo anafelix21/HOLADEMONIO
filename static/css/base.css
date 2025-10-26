@@ -1,0 +1,59 @@
+/* Fuente Inter */
+.font-inter {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Botón primario */
+.btn-primary {
+    @apply bg-red-600 px-4 py-2 rounded-lg font-semibold shadow-md transition duration-300 transform hover:scale-105 hover:bg-red-700;
+}
+
+/* Navegación */
+.nav-link {
+    @apply py-2 px-1 text-gray-200 hover:text-red-500 transition duration-300 transform hover:scale-105 focus:outline-none;
+}
+
+/* Dropdown */
+.dropdown-item {
+    @apply block px-4 py-2 text-sm text-gray-800 hover:bg-red-50 hover:text-red-600 transition duration-150;
+}
+
+/* Body y Footer */
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #f3f4f6;
+}
+
+footer {
+    font-size: 0.9rem;
+    text-align: center;
+    background-color: #111827;
+    color: white;
+    padding: 1.5rem 0;
+    margin-top: auto;
+}
+
+/* Animación global fade-in */
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    @apply opacity-0;
+    animation: aparecer 0.5s ease forwards;
+}
+
+/* Validación de inputs */
+.input-invalid {
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 0 1px #ef4444 !important;
+}
+
+.error-text {
+    color: #ef4444;
+    font-size: 0.875rem;
+}

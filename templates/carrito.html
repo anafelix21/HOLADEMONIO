@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block title %}Carrito - Carnicería Pochito{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/carrito.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <h1 class="text-3xl font-bold mb-8">Tu Carrito de Compras</h1>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- Lista de productos -->
+        <div class="lg:col-span-2">
+            <div id="carrito-detallado" class="space-y-4">
+                <!-- Los productos se cargarán dinámicamente aquí -->
+            </div>
+        </div>
+
+        <!-- Resumen de compra -->
+        <div class="lg:col-span-1">
+            <div class="bg-white p-6 rounded-lg shadow-lg sticky top-24">
+                <h2 class="text-xl font-semibold mb-4">Resumen de compra</h2>
+                
+                <div class="space-y-2 mb-4">
+                    <div class="flex justify-between">
+                        <span>Subtotal</span>
+                        <span id="subtotal">S/. 0.00</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span>IGV (18%)</span>
+                        <span id="igv">S/. 0.00</span>
+                    </div>
+                    <div class="border-t pt-2 mt-2">
+                        <div class="flex justify-between font-bold">
+                            <span>Total</span>
+                            <span id="total">S/. 0.00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="{{ url_for('pagos') }}" id="btn-proceder-pago" 
+                   class="block w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed text-center">
+                    Proceder al pago
+                </a>
+
+                <div class="mt-4 text-sm text-gray-600">
+                    <div class="flex items-center mb-2">
+                        <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                        </svg>
+                        Transacción segura
+                    </div>
+                    <div class="flex items-center">
+                        <svg class="w-5 h-5 mr-2 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                        </svg>
+                        Garantía de calidad
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Cargar primero el carrito base -->
+<script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+<!-- Luego cargar el carrito detallado que depende del base -->
+<script src="{{ url_for('static', filename='js/carrito-detallado.js') }}"></script>
+<script>
+    // Asegurarnos de que el carrito se actualice cuando cambie
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof carrito !== 'undefined') {
+            carrito.actualizarCarrito();
+        }
+    });
+</script>
+{% endblock %}

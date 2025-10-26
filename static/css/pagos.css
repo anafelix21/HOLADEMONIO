@@ -1,0 +1,30 @@
+.payment-option {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.payment-option:hover {
+  transform: scale(1.1);
+}
+
+.fade-in {
+  animation: aparecer 0.5s ease forwards;
+}
+
+/* Animación y estilo para el botón "Confirmar pedido" */
+#confirm-button {
+  transition: all 0.3s ease;
+  background-color: #ff4b6e;
+  color: white;
+}
+
+#confirm-button:hover {
+  background-color: #ff4b6e; /* Un color ligeramente diferente al original para el hover */
+  transform: scale(1.05); /* Le da un pequeño aumento de tamaño */
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+}
+
+/* Añadir una sombra de caja cuando el botón es presionado */
+#confirm-button:active {
+  box-shadow: none;
+}

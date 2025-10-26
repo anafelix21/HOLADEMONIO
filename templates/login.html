@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Iniciar Sesión - Carnicería Pochito{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<main class="min-h-screen flex items-center justify-center bg-gradient-to-br from-red-50 to-gray-100 py-12 px-4">
+  <div class="w-full max-w-5xl bg-white/95 rounded-2xl shadow-2xl flex overflow-hidden backdrop-blur-sm border border-white/20">
+
+    <!-- 🟢 Iniciar Sesión -->
+    <div class="w-1/2 p-10 flex flex-col justify-center bg-white">
+      <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Iniciar Sesión</h2>
+
+      <div class="flex justify-center gap-3 mb-6">
+        <button class="p-2 border rounded-lg hover:bg-gray-50">
+          <img src="{{ url_for('static', filename='image/google.png') }}" alt="Google" class="w-6 h-6">
+        </button>
+        <button class="p-2 border rounded-lg hover:bg-gray-50">
+          <img src="{{ url_for('static', filename='image/facebook.png') }}" alt="Facebook" class="w-6 h-6">
+        </button>
+        <button class="p-2 border rounded-lg hover:bg-gray-50">
+          <img src="{{ url_for('static', filename='image/github.png') }}" alt="GitHub" class="w-6 h-6">
+        </button>
+        <button class="p-2 border rounded-lg hover:bg-gray-50">
+          <img src="{{ url_for('static', filename='image/linkedin.png') }}" alt="LinkedIn" class="w-6 h-6">
+        </button>
+      </div>
+
+      <p class="text-sm text-gray-500 text-center mb-6">o usa tu correo y contraseña</p>
+
+      <form action="{{ url_for('login') }}" method="post" class="space-y-4">
+        <div>
+          <label for="email-login" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+          <input type="email" id="email-login" name="email" required placeholder="ejemplo@correo.com"
+                 class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-red-500 focus:border-red-500">
+        </div>
+
+        <div>
+          <label for="password-login" class="block text-sm font-medium text-gray-700">Contraseña</label>
+          <input type="password" id="password-login" name="password" required placeholder="********"
+                 class="mt-1 w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-red-500 focus:border-red-500">
+        </div>
+
+        <button type="submit"
+                class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2 rounded-lg transition">
+          Iniciar Sesión
+        </button>
+      </form>
+
+      <p class="mt-4 text-center text-sm text-gray-500">
+        ¿Olvidaste tu contraseña?
+      </p>
+    </div>
+
+    <!-- 🔴 Crear Cuenta -->
+    <div class="w-1/2 bg-red-600 text-white p-10 flex flex-col justify-center">
+      <h2 class="text-2xl font-bold mb-4 text-center">Crear Cuenta</h2>
+      <form action="{{ url_for('register') }}" method="post" class="space-y-4">
+        <div>
+          <label for="nombre" class="block text-sm font-medium">Nombre</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre"
+                 class="mt-1 w-full border border-white/30 bg-white/10 rounded-lg px-4 py-2 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white">
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium">Correo Electrónico</label>
+          <input type="email" id="email" name="email" placeholder="ejemplo@correo.com"
+                 class="mt-1 w-full border border-white/30 bg-white/10 rounded-lg px-4 py-2 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white">
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium">Contraseña</label>
+          <input type="password" id="password" name="password" placeholder="********"
+                 class="mt-1 w-full border border-white/30 bg-white/10 rounded-lg px-4 py-2 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white">
+        </div>
+
+        <div>
+          <label for="dni" class="block text-sm font-medium">DNI</label>
+          <input type="text" id="dni" name="dni" maxlength="8" pattern="\d{8}" placeholder="8 dígitos"
+                 class="mt-1 w-full border border-white/30 bg-white/10 rounded-lg px-4 py-2 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white">
+        </div>
+
+        <div>
+          <label for="direccion" class="block text-sm font-medium">Dirección</label>
+          <input type="text" id="direccion" name="direccion" placeholder="Av. / Calle y número"
+                 class="mt-1 w-full border border-white/30 bg-white/10 rounded-lg px-4 py-2 placeholder-white/70 text-white focus:outline-none focus:ring-2 focus:ring-white">
+        </div>
+
+        <div>
+          <label for="fecha_nacimiento" class="block text-sm font-medium">Fecha de nacimiento</label>
+          <input type="date" id="fecha_nacimiento" name="fecha_nacimiento"
+                 class="mt-1 w-full border border-white/30 bg-white/10 rounded-lg px-4 py-2 text-white focus:outline-none focus:ring-2 focus:ring-white">
+        </div>
+
+        <button type="submit"
+                class="w-full bg-white text-red-600 font-semibold py-2 rounded-lg hover:bg-gray-100 transition">
+          Registrarse
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/login.js') }}"></script>
+{% endblock %}

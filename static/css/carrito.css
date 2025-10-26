@@ -1,0 +1,17 @@
+.cart-item {
+  transition: transform 0.2s ease;
+}
+
+.cart-item:hover {
+  transform: scale(1.02);
+}
+
+.total {
+  font-weight: bold;
+  font-size: 1.25rem;
+  color: #dc2626;
+}
+
+.fade-in {
+  animation: aparecer 0.5s ease forwards;
+}

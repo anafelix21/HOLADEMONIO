@@ -1,0 +1,93 @@
+/* Dark mode styles */
+:root[data-theme="dark"] {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --text-primary: #f3f4f6;
+  --text-secondary: #d1d5db;
+  --border-color: #374151;
+  --accent-color: #ef4444;
+}
+
+:root[data-theme="light"] {
+  --bg-primary: #f3f4f6;
+  --bg-secondary: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --border-color: #e5e7eb;
+  --accent-color: #ef4444;
+}
+
+/* Aplicar variables CSS */
+[data-theme="dark"] body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .bg-gray-50 {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] .bg-gray-100 {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .text-gray-800 {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: var(--text-secondary);
+}
+
+[data-theme="dark"] .border {
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .shadow-lg,
+[data-theme="dark"] .shadow-md,
+[data-theme="dark"] .shadow-xl {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .nav-link {
+  color: var(--text-primary);
+}
+
+[data-theme="dark"] .dropdown-item {
+  color: var(--text-primary);
+  background-color: var(--bg-secondary);
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background-color: var(--bg-primary);
+}
+
+[data-theme="dark"] .product-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] select {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .mega-results {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
+[data-theme="dark"] .chip {
+  background-color: var(--bg-secondary);
+  border-color: var(--border-color);
+}
+
+[data-theme="dark"] .chip:hover {
+  background-color: var(--bg-primary);
+}

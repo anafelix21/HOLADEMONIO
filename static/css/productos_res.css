@@ -1,0 +1,45 @@
+/* --- Estilos personalizados para Carne de Res / Vacuno --- */
+
+body {
+    background-color: #f9fafb;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Encabezado */
+section.bg-gray-800 {
+    background: linear-gradient(135deg, #991b1b, #7f1d1d);
+}
+
+/* Tarjetas */
+.product-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Botones */
+button {
+    background-color: #dc2626;
+    color: white;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background-color: #b91c1c;
+    transform: translateY(-3px);
+}
+
+/* Imágenes */
+img {
+    transition: transform 0.3s ease;
+}
+
+img:hover {
+    transform: scale(1.03);
+}

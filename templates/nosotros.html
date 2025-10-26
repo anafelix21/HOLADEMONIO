@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Nosotros - Carnicería Pochito{% endblock %}
+
+{% block content %}
+<section class="bg-red-700 text-white py-16 text-center shadow-lg">
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight">Sobre Nosotros</h1>
+</section>
+
+<section class="py-12 px-6 lg:px-16 bg-gray-100">
+    <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-xl p-8 text-gray-800 leading-relaxed">
+        <p class="mb-6 text-lg">
+            <strong>Carnicería Pochito</strong> está a cargo de <strong>Luis Benavente Villar</strong>, 
+            quien lleva más de <strong>24 años</strong> en el negocio. 
+            Además de carne de res, ofrece productos como mondongo, hígado y bofe.
+        </p>
+
+        <p class="mb-6 text-lg">
+            El ganado es cuidadosamente seleccionado por el propio Luis en los distintos criaderos de la provincia de 
+            <strong>Cañete</strong>, tales como <strong>Cochahuasi, Roma, Roldán, Playa Hermosa y Quilmaná</strong>, 
+            garantizando así un producto de excelente calidad.
+        </p>
+
+        <p class="mb-6 text-lg">
+            Carnicería Pochito también realiza entregas a reconocidos restaurantes de la zona como 
+            <strong>Pollería Arizona, Chifa El Pacífico, Restaurant Las Palmeritas, Luz Verde</strong> y 
+            <strong>La Cabaña</strong>, en distritos como <strong>Imperial, Quilmaná, Nuevo Imperial y Lunahuaná</strong>.
+        </p>
+
+        <div class="text-center mt-10">
+            <img src="{{ url_for('static', filename='image/carniceria.jpg') }}" alt="Fachada de Carnicería Pochito"
+                class="mx-auto rounded-xl shadow-lg w-full max-w-2xl">
+        </div>
+    </div>
+</section>
+{% endblock %}

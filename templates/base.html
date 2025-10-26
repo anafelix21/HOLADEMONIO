@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Carnicería Pochito{% endblock %}</title>
+
+  <!-- Google Fonts + Tailwind -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="{{ url_for('static', filename='css/base.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/dark-mode.css') }}" rel="stylesheet">
+  {% block extra_css %}{% endblock %}
+  
+  <!-- Scripts -->
+  <script src="{{ url_for('static', filename='js/dark-mode.js') }}" defer></script>
+</head>
+
+<body class="bg-gray-50 flex flex-col min-h-screen font-inter">
+
+  <!-- HEADER -->
+  <header class="bg-gray-900 shadow-lg sticky top-0 z-50">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center text-white">
+      <a href="{{ url_for('index') }}" class="text-3xl font-bold tracking-wider text-red-500 hover:text-red-400 transition transform hover:scale-105">
+        POCHITO <span class="text-lg text-gray-400 font-light hidden sm:inline">| Carnes</span>
+      </a>
+
+      <div class="flex space-x-4 items-center text-sm sm:text-base font-medium">
+        <a href="{{ url_for('index') }}" class="nav-link">Inicio</a>
+        <a href="{{ url_for('nosotros') }}" class="nav-link">Nosotros</a>
+
+        <!-- Dropdown Tipos de Carne -->
+        <div class="relative group">
+          <button class="nav-link flex items-center">
+            Tipos de Carne
+            <svg class="ml-1 h-5 w-5 transition-transform duration-300 group-hover:rotate-180"
+                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div
+            class="absolute right-0 mt-3 w-56 bg-white text-gray-800 rounded-xl shadow-2xl z-50 opacity-0 scale-95 transition-all duration-300 invisible group-hover:visible group-hover:opacity-100 group-hover:scale-100 border border-red-100/50">
+            <div class="py-1 flex flex-col">
+              <a href="{{ url_for('productos_res') }}" class="dropdown-item">Carne de Res / Vacuno</a>
+              <a href="{{ url_for('productos_cerdo') }}" class="dropdown-item">Carne de Cerdo</a>
+              <a href="{{ url_for('productos_pollo') }}" class="dropdown-item">Carne de Pollo</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dropdown Tipos de Carne -->
+        <div class="relative group">
+          <button class="nav-link flex items-center">
+            Todo para Asar
+            <svg class="ml-1 h-5 w-5 transition-transform duration-300 group-hover:rotate-180"
+                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd"
+                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div
+            class="absolute right-0 mt-3 w-56 bg-white text-gray-800 rounded-xl shadow-2xl z-50 opacity-0 scale-95 transition-all duration-300 invisible group-hover:visible group-hover:opacity-100 group-hover:scale-100 border border-red-100/50">
+            <div class="py-1 flex flex-col">
+              <a href="{{ url_for('cuchillos') }}" class="dropdown-item">Cuchillos y Utensilios</a>
+              <a href="{{ url_for('parrillas') }}" class="dropdown-item">Parrilas y Soportes</a>
+              <a href="{{ url_for('limpieza') }}" class="dropdown-item">Limpieza y Mantenimiento</a>
+              <a href="{{ url_for('encendido') }}" class="dropdown-item">Combustible y Encendido</a>
+              <a href="{{ url_for('adicionales') }}" class="dropdown-item">Equipos adicionales</a>
+            </div>
+          </div>
+        </div>
+
+        {% if session.get('is_authenticated') %}
+        <!-- Elementos visibles solo para usuarios autenticados -->
+        <a href="{{ url_for('pagos') }}" class="nav-link flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+          </svg>
+          Métodos de Pago
+        </a>
+        
+        <!-- Botón carrito -->
+        <button onclick="toggleCarrito()" class="relative p-2 rounded-full hover:bg-gray-800 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none"
+               viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
+          <span id="contador-carrito"
+                class="absolute top-0 right-0 inline-flex items-center justify-center w-5 h-5 text-xs font-bold bg-red-600 border-2 border-gray-900 rounded-full">0</span>
+        </button>
+        <a href="{{ url_for('logout') }}" class="nav-link">Cerrar Sesión</a>
+        {% else %}
+        <!-- Botón de inicio de sesión para usuarios no autenticados -->
+        <a href="{{ url_for('login') }}" class="nav-link flex items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          Iniciar Sesión / Registro
+        </a>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="flex-grow">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-gray-900 text-gray-400 py-6 text-center mt-auto border-t border-red-700/50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <p class="mb-1">&copy; {{ year }} Carnicería Pochito | Calidad y frescura garantizada.</p>
+      <div class="flex justify-center space-x-4 text-sm mt-2">
+        <a href="#" class="hover:text-red-500 transition duration-200">Términos y Condiciones</a>
+        <span class="text-gray-600">|</span>
+        <a href="#" class="hover:text-red-500 transition duration-200">Política de Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 🛒 SIDEBAR DEL CARRITO -->
+  <div id="sidebar-carrito"
+       class="fixed top-0 right-0 w-80 h-full bg-white shadow-xl transform translate-x-full transition-transform duration-300 z-50">
+    <div class="p-4 flex justify-between items-center border-b">
+      <h2 class="text-xl font-bold">Tu Carrito</h2>
+      <button onclick="toggleCarrito()" class="text-red-600 text-lg">✖</button>
+    </div>
+    <div id="carrito-lista" class="p-4 overflow-y-auto h-[calc(100%-100px)]">
+      <p class="text-gray-500">El carrito está vacío.</p>
+    </div>
+    <div class="p-4 border-t">
+      <a href="{{ url_for('cart') }}"
+         class="w-full inline-block text-center bg-green-600 text-white py-2 rounded hover:bg-green-800">
+         Ver carrito detallado
+      </a>
+    </div>
+  </div>
+
+  <!-- 🐮 CHATBOT -->
+  <div id="chatbot-container" class="fixed bottom-6 right-6 z-50">
+    <button id="chatbot-toggle"
+            class="bg-red-500 hover:bg-red-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center transition transform hover:scale-105">
+      🐮
+    </button>
+    <div id="chatbot"
+         class="hidden bg-white rounded-2xl shadow-2xl w-80 md:w-96 mt-4 overflow-hidden border border-red-200">
+      <div class="bg-red-600 text-white flex items-center justify-between p-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-2xl">🐮</span>
+          <h2 class="font-semibold text-lg">PochiBot</h2>
+        </div>
+        <button id="chatbot-close" class="hover:text-gray-200 text-xl">&times;</button>
+      </div>
+      <div id="chatbot-messages" class="p-4 h-64 overflow-y-auto bg-gray-50">
+        <div class="text-sm text-gray-600 mb-2">
+          👋 ¡Hola! Soy <strong>PochiBot</strong>, tu asistente de la carnicería. ¿En qué puedo ayudarte hoy?
+        </div>
+      </div>
+      <div class="border-t border-gray-200 bg-white p-3 flex items-center space-x-2">
+        <input id="chatbot-input" type="text" placeholder="Escribe tu mensaje..."
+               class="flex-grow p-2 text-sm border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-red-400">
+        <button id="chatbot-send"
+                class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-full transition text-sm">Enviar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+  <script>
+    // Fallback: enlaza explícitamente botones .agregar-carrito a window.carrito.agregarProducto
+    document.addEventListener('DOMContentLoaded', () => {
+      try {
+        if (!window.carrito || typeof window.carrito.agregarProducto !== 'function') return;
+        document.querySelectorAll('.agregar-carrito').forEach(boton => {
+          if (boton.dataset._fallbackBound) return;
+          boton.dataset._fallbackBound = '1';
+          boton.addEventListener('click', (e) => {
+            e.preventDefault();
+            const rawId = boton.dataset.id || '';
+            const rawNombre = boton.dataset.nombre || '';
+            const rawPrecio = boton.dataset.precio || '';
+            const rawImagen = boton.dataset.imagen || '';
+            const card = boton.closest('.product-card') || boton.closest('div');
+            const qtyInput = card ? card.querySelector('.producto-cantidad') : null;
+            const cantidad = qtyInput ? (parseInt(qtyInput.value) || 1) : 1;
+            const id = String(rawId).replace(/"+/g, '').trim();
+            const nombre = String(rawNombre).replace(/"+/g, '').trim();
+            const precio = parseFloat(String(rawPrecio).replace(/[^0-9,.-]/g, '').replace(',', '.')) || 0;
+            const imagen = String(rawImagen).trim();
+            if (!id || !nombre || isNaN(precio)) {
+              console.warn('[carrito-fallback] datos inválidos:', boton.dataset);
+              return;
+            }
+            window.carrito.agregarProducto(id, nombre, precio, imagen, cantidad);
+            // si existe el modal renderer lo re-renderizamos
+            if (typeof window.renderModalCart === 'function') window.renderModalCart();
+          });
+        });
+      } catch (err) {
+        console.warn('[carrito-fallback] no se pudo enlazar fallback:', err);
+      }
+    });
+  </script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>
